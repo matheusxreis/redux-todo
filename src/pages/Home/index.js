@@ -16,10 +16,13 @@ import {
     RemoveTodo,
     UpdateToggle,
     UpdateColor,
+    MarkAllCompleted,
+    DesmarkAllCompleted} from '../../store/todos/actions'
+
+import {
     UpdateFilterByColor,
     UpdateFilterByStatus,
-    MarkAllCompleted,
-    DesmarkAllCompleted} from '../../store/actions'
+} from '../../store/filters/actions'
 
 import { api } from '../../api/client'
 
@@ -106,7 +109,7 @@ export default function Home() {
 
         console.log(filtered)
 
-        if(colors.length<1 && status.length<1){
+        if(colors?.length<1 && status?.length<1){
             setTodosList(
                 todos
             )
