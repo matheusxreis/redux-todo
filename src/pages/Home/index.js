@@ -85,14 +85,22 @@ export default function Home() {
         if(status.find(x=>x==="Finalizadas")){
            
             filtered = 
-            filtered.length>=1 ? filtered.filter(x=>x.completed)
+            filtered.length>1 ? filtered.filter(x=>x.completed)
             : todos.filter(x=>x.completed)
+            console.log(filtered)
+        }
+
+        if(status.find(x=>x==="Todas")){
+           
+            filtered = 
+            filtered.length>1 ? filtered
+            : todos
             console.log(filtered)
         }
 
         const statusIsAll = status.find(x=>x==="Todas")
 
-        if(colors.length<1 && (status.length<1 || statusIsAll)){
+        if(colors.length<1 && (status.length<1)){
             setTodosList(
                 todos
             )
