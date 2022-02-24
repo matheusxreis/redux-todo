@@ -63,12 +63,12 @@ export default function Home() {
     useEffect(()=>{
         let filtered = [];
         
-        const loop = colors.length>status.length ? colors.length : status.length
+        const loop = colors.length>=1 ? colors.length : 6
         for(let i = 0; i<loop ; i++){
             const existList = todos.filter(x=>x.color === colors[i])
             const existOne = todos.find(x=>x.color === colors[i])
 
-            if(existList && existOne){
+            if(existList && existOne && colors.length>=1){
                existList.length>1 ? filtered = existList :  
                 filtered = [...filtered, existOne]
             }
@@ -76,33 +76,37 @@ export default function Home() {
         }
         console.log(status)
 
-        if(status.find(x=>x==="Ativas")){
-            
+        if(status==="Ativas"){
+
+            console.log('aaa', todos)
+            console.log(filtered)
             filtered =
-            filtered.length>1 ? filtered.filter(x=>!x.completed) 
-            : todos.filter(x=>!x.completed) 
+            filtered.length<1 ? todos.filter(x=>!x.completed) 
+            : filtered.filter(x=>!x.completed) 
             console.log(filtered)
         }
 
-        if(status.find(x=>x==="Finalizadas")){
+        if(status==="Finalizadas"){
            
             filtered = 
-            filtered.length>1 ? filtered.filter(x=>x.completed)
-            : todos.filter(x=>x.completed)
+            filtered.length<1 ? todos.filter(x=>x.completed)
+            : filtered.filter(x=>x.completed)
             console.log(filtered)
         }
 
-        if(status.find(x=>x==="Todas")){
+        if(status==="Todas"){
            
             filtered = 
-            filtered.length>1 ? filtered
-            : todos
+            filtered.length<1 ? todos
+            : filtered
             console.log(filtered)
         }
 
-        const statusIsAll = status.find(x=>x==="Todas")
+       // const statusIsAll = status.find(x=>x==="Todas")
 
-        if(colors.length<1 && (status.length<1)){
+        console.log(filtered)
+
+        if(colors.length<1 && status.length<1){
             setTodosList(
                 todos
             )
@@ -187,13 +191,15 @@ export default function Home() {
 
    function handleFilterByStatus(status){
 
-    if(statusSelected.find(x=>x===status)){
+    if(statusSelected===status){
         setStatusSelected(
-            statusSelected.filter(x=>x!==status)
+            "Todas"
         )
     }else {
-        setStatusSelected([...statusSelected, status])
+        setStatusSelected(status)
     }
+
+    //setStatusSelected(status)
 
     console.log(statusSelected)
    }
@@ -211,6 +217,10 @@ export default function Home() {
        )
     
    }, [statusSelected])
+
+   useEffect(()=>{
+    console.log(todos)
+   }, [todos])
 
     return (
         <div style={{marginTop:'100px'}}>
@@ -231,7 +241,7 @@ export default function Home() {
             </CenterContainer>
 
             <CenterContainer borderTop={true}>
-               <h2> A lista: </h2> 
+               {/* <h2> A lista: </h2>  */}
 
              
                    <ul>
@@ -246,7 +256,8 @@ export default function Home() {
                          <CheckItem
                          onClickProps={handleUpdateToggle}
                          param={x.id}
-                         text={x.text || ''} checked={x.completed} />
+                         text={x.text || ''} 
+                         checked={x.completed === true} />
 
                         <div style={{display:"flex",
                                     alignItems: "center",
@@ -321,6 +332,7 @@ export default function Home() {
                              height:'25px',
                              marginLeft:'auto'}}>
                               <CheckItem
+                              checked={x===statusSelected}
                               color="#212930" 
                               text={x} 
                               param={x}

@@ -9,7 +9,7 @@ const initialState = {
        
     ],
     filters: {
-        status: ['Todos'],
+        status: 'Todos',
         colors: ["", "red", "yellow", "green", "blue", "orange", "purple"],
     },
     filtered: []
@@ -88,11 +88,11 @@ export default function appReducer(
             return {
                 ...state,
                 todos: state.todos.map(x=>{
-                    if(!x.completed){
+                   // if(!x.completed){
                     x.completed = true
                     return x
-                }
-                    return x
+                //}
+                   // return x
                 })
             }
         }
@@ -101,11 +101,11 @@ export default function appReducer(
                 ...state,
                 todos: state.todos.map(x=>{
 
-                    if(x.completed){
+                  //  if(x.completed){
                         x.completed = false
                         return x
-                    }
-                   return x
+                    //}
+                   //return x
                 })
             }
         }
