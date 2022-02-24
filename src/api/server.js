@@ -10,7 +10,7 @@ import { Server, Model} from 'miragejs'
         server.create("todo", {id: 0, text: "Passear com o cachorro", completed: false, color:"blue"})
         server.create("todo", {id: 1, text: "Jogar futebol no sábado", completed: false, color:"purple"})
         server.create("todo", {id: 2, text: "Treinar", completed: false, color:"red"})
-        server.create("todo",  {id: 3, text: "Aprender Redux", completed: true})
+        server.create("todo",  {id: 3, text: "Aprender Redux", completed: false})
         
       },
 

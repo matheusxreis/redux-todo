@@ -83,6 +83,32 @@ export default function appReducer(
                     status: action.payload
                 }
             }
+
+        case "todos/defineAllCompleted":{
+            return {
+                ...state,
+                todos: state.todos.map(x=>{
+                    if(!x.completed){
+                    x.completed = true
+                    return x
+                }
+                    return x
+                })
+            }
+        }
+        case "todos/defineAllNotCompleted":{
+            return {
+                ...state,
+                todos: state.todos.map(x=>{
+
+                    if(x.completed){
+                        x.completed = false
+                        return x
+                    }
+                   return x
+                })
+            }
+        }
         default:
         return state;
     }

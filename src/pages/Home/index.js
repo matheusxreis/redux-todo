@@ -17,7 +17,9 @@ import {
     UpdateToggle,
     UpdateColor,
     UpdateFilterByColor,
-    UpdateFilterByStatus} from '../../store/actions'
+    UpdateFilterByStatus,
+    MarkAllCompleted,
+    DesmarkAllCompleted} from '../../store/actions'
 
 import { api } from '../../api/client'
 
@@ -160,6 +162,17 @@ export default function Home() {
 
    }
 
+   function handleMarkAll(){
+       dispatch(
+           MarkAllCompleted()
+       )
+   }
+
+   function handleDesmarkAll(){
+       dispatch(
+           DesmarkAllCompleted()
+       )
+   }
    function handleFilterByColor(color){
 
     if(colorsSelected.find(x=>x===color)){
@@ -208,6 +221,7 @@ export default function Home() {
                <div style={{display:"flex"}}>
                     <Input 
                     type="text"
+                    value={newTodo}
                     placeholder="Adicione o item"
                     onChange={(e)=>setNewTodo(e.target.value)}
                     />
@@ -232,7 +246,7 @@ export default function Home() {
                          <CheckItem
                          onClickProps={handleUpdateToggle}
                          param={x.id}
-                         text={x?.text || ''} checked={x.completed} />
+                         text={x.text || ''} checked={x.completed} />
 
                         <div style={{display:"flex",
                                     alignItems: "center",
@@ -259,8 +273,32 @@ export default function Home() {
                         //alignItems: "center",
                         //alignContent:"center",
                         justifyContent:"space-between"}}>
-                    <div>
 
+                    <div>
+                    <span style={{display:'block', marginLeft:'auto', width:'150px'}}>
+                        <b>Ações: </b>
+
+                       <Button 
+                       onClick={()=>handleMarkAll()}
+                       style={{padding: 0, height:'30px', width:150}}> 
+                       Marcar todas </Button>
+                       <Button
+                       onClick={()=>handleDesmarkAll()}
+                       style={{padding: 0, height:'30px', width:150}}>
+                         Desmarcar todas </Button>
+
+                    </span>
+
+                    </div>
+
+                    <div>
+                    <span style={{display:'block', marginLeft:'auto', width:'150px'}}>
+                        <b>Tarefas restantes: </b>
+
+                        <p> {todos.filter(x=>!x.completed).length} 
+                        {todos.filter(x=>!x.completed).length === 1 ? ' item ' :' itens '} 
+                        sobrando. </p>
+                    </span>
 
                     </div>
                     <div>
@@ -279,7 +317,7 @@ export default function Home() {
                              padding:10,
                              lineHeight: `25px\${statusList.length}`,
                              color: '#FFFFF',
-                             width:'170px',
+                             width:'120px',
                              height:'25px',
                              marginLeft:'auto'}}>
                               <CheckItem
@@ -303,19 +341,25 @@ export default function Home() {
                            <div style={{display:"flex",
                            alignItems: "center",
                            alignContent:"center",
+                           justifyContent:"space-between",
                            margin: 5,
                            padding:10,
-                           backgroundColor:x,
-                           color: '#FFFFF',
-                           width:'150px',
+                           width:'120px',
                            height:'25px',
                            marginLeft:'auto'}}>
+
                             <CheckItem
-                            color="#FFF" 
+                            color="#212930" 
                             text={x} 
                             param={x}
                             onClickProps={handleFilterByColor}/>
-                            
+                            <div style={{
+                                width:20,
+                                height:20,
+                                background: x,
+                                borderRadius: 2,
+
+                            }}> </div>
                           </div>
                        )})}
                     </div> 

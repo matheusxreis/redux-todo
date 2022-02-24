@@ -61,9 +61,22 @@ export function UpdateFilterByColor(payload){
 export function UpdateFilterByStatus(payload){
 
     //status = payload 
-    
+
     return {
         type: "filters/updateStatus",
         payload 
+    }
+}
+
+
+export function MarkAllCompleted(payload){
+    return {
+        type: "todos/defineAllCompleted"
+    }
+}
+
+export function DesmarkAllCompleted(payload){
+    return {
+        type: "todos/defineAllNotCompleted"
     }
 }
