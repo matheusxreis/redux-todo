@@ -9,7 +9,7 @@ const initialState = {
        
     ],
     filters: {
-        status: 'All',
+        status: ['Todos'],
         colors: ["", "red", "yellow", "green", "blue", "orange", "purple"],
     },
     filtered: []
@@ -38,17 +38,51 @@ export default function appReducer(
         todos: action.payload
        }
         
-        case "todos/filterByColor":
+       case "todos/todoDeleted":
          return {...state, 
-            filtered: [...state.filtered,
-                 state.todos.find(x=>x?.color===action.payload.color)]
-        }
-        
-        case "todos/reFilterByColor":
-         return {...state, 
-            filtered: [state.filtered.filter(x=>x.color!==action.payload.color)]
-        }
-        
+        todos: state.todos.filter(x=> x.id !== action.payload)
+       }  
+
+       case "todos/updateToggle":
+          return {...state,
+        todos: state.todos.map(x=>{
+            if(x.id !== action.payload){
+                return x
+            }
+
+            x.completed = !x.completed
+            return x
+        })}
+
+        case "todos/updateColor":
+            return {...state, 
+            todos: state.todos.map(x=>{
+                if(x.id!==action.payload.id){
+                    return x
+                }
+
+                x.color = action.payload.color
+
+                return x
+            })}
+
+        case "filters/updateColors":
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    colors: action.payload
+                }
+            }
+
+        case "filters/updateStatus":
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    status: action.payload
+                }
+            }
         default:
         return state;
     }

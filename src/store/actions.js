@@ -18,19 +18,52 @@ export function ListAllTodos(payload){
     }
 }
 
-export function FilterByColor(payload){
+export function RemoveTodo(payload){
 
-    const {color, increment} = payload
+    //payload = id
+
+return {
+    type: "todos/todoDeleted",
+    payload
+}
+
+}
+
+
+export function UpdateToggle(payload){
+
+    //payload = id
+   return {
+       type: "todos/updateToggle",
+       payload
+    }
+   }
+   
+
+export function UpdateColor(payload){
+
+    //const { id, color } = payload
+
+    return { type: "todos/updateColor",
+    payload}
+}
+
+export function UpdateFilterByColor(payload){
+
+    //color ou colors = payload
+
     return {
-        type: "todos/filterByColor",
-        payload: {color, increment}
+        type:"filters/updateColors",
+        payload
     }
 }
 
-export function reFilterByColor(payload){
-    const {color, increment} = payload
+export function UpdateFilterByStatus(payload){
+
+    //status = payload 
+    
     return {
-        type:"todos/reFilterByColor",
-        payload: {color, increment}
+        type: "filters/updateStatus",
+        payload 
     }
 }
