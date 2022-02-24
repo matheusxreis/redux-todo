@@ -1,15 +1,18 @@
 
+import { api } from "../api/client";
+
+
+
 //valor inicial do meu state
 const initialState = {
     todos: [
-        {id: 0, text: "Passear com o cachorro", completed: false, color:"blue"},
-        {id: 1, text: "Jogar futebol no sábado", completed: false, color:"purple"},
-        {id: 2, text: "Aprender Redux", completed: true}
+       
     ],
     filters: {
         status: 'All',
-        colors: []
-    }
+        colors: ["", "red", "yellow", "green", "blue", "orange", "purple"],
+    },
+    filtered: []
 }
 
 //reduction function, que é a função que
@@ -28,7 +31,23 @@ export default function appReducer(
             text: action.payload,
             completed: false
         }
-        ]}
+        ]};
+
+        case "todos/listAll":
+        return {...state,
+        todos: action.payload
+       }
+        
+        case "todos/filterByColor":
+         return {...state, 
+            filtered: [...state.filtered,
+                 state.todos.find(x=>x?.color===action.payload.color)]
+        }
+        
+        case "todos/reFilterByColor":
+         return {...state, 
+            filtered: [state.filtered.filter(x=>x.color!==action.payload.color)]
+        }
         
         default:
         return state;
