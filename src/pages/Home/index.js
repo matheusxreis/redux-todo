@@ -47,11 +47,11 @@ export default function Home() {
     useEffect(()=>{
         console.log(colors)
     async function getInitialData(){
-        const response = await api.get('/todos')
+        //const response = await api.get('/todos')
         
-        const payload = (response.data.todos)
+       // const payload = (response.data.todos)
          dispatch(
-             ListAllTodos(payload)
+             ListAllTodos()
          )
     }
 

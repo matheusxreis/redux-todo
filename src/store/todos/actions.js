@@ -13,8 +13,8 @@ export function ListAllTodos(payload){
     //id: 0, text: "Passear com o cachorro", completed: false, color:"blue"
 
     return {
-        type: "todos/listAll",
-        payload: payload
+        type: "@todos/listAll",
+        
     }
 }
 
