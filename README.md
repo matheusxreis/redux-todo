@@ -1,70 +1,43 @@
-# Redux Fundamentals Tutorial Example
+### To Do List (com Redux)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Projeto para treinar os conhecimentos de Redux
 
-## Available Scripts
+Esse projeto foi criado com o objetivo de treinar e entender melhor como a biblioteca do Redux funciona, principalmente com React. 
 
-In the project directory, you can run:
+#### Tecnologias utilizadas: :pen: 
+- **React**: biblioteca UI;
+- **React-Redux**: biblioteca do Redux para projetos React;
+- **Redux-Saga**: middleware do Redux, que funciona para melhor organização de operações assíncronas na aplicação.
+- **Styled-components**: biblioteca do React.
+- **Axios**: biblioteca para consumir APIs.
+- **MirageJS**: biblioteca para criar fakes API.
 
-### `yarn start`
+O projeto é referente a uma lista de coisas há se fazer. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Deve ser possível: :book:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Adicionar uma tarefa;
+- Remover uma tarafa;
+- Marcar a tarefa como feita;
+- Desmarcar a tarefa como feita;
+- Alterar a cor referente a tarefa;
+- Filtrar as tarefas pelas cores;
+- Filtrar as tarefas pelos status de completo e ativa.
+- Filtrar simultâneamente pelas cores e status.
+- Marcar todas de uma vez.
+- Desmarcar todas de uma vez.
+- A quantidade de tarefas restantes a ser feita, deve sempre ser exibidas em tela.
 
-### `yarn test`
+O gerenciamento das **todos** foi todo feito utilizando o store do Redux, ao invés de armazená-lo em um estado normal e passar para os componentes via Context API.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para criar a store, foi utilizado o conceito de reducers e actions divididos por módulos, onde há um reducers principal que agrupa todos os outros e é jogado diretamente no createStore. 
 
-### `yarn build`
+O Sagas foi utilizado para lidar com operações assíncronas na aplicação, como as chamadas para API, para consultar o banco, adicionar e também remover. O middleware do Saga também foi divido dentro dos módulos, possuindo um principal que agrupa todos os outros e esse qual é colocado como middleware na store.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Apesar de uma aplicação extremamente básica, ela ilustra muito bem como o Redux e o Redux-Saga podem ser utilizados em uma aplicação. **Conceitos aprendidos** na construção foram:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- O que é e como funciona a store, o state, os reducers e as actions no Redux.
+- O gerenciamento de state com Redux. 
+- Generators functions no JavaScript.
+- Como funciona o middleware Redux-Saga.
+- Estruturação de pastas por módulos no Redux.
