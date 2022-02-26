@@ -8,7 +8,7 @@ import filtersReducer from './filters/reducers'
 
 //reduction function, que é a função que
 //altera o state
-export default function appReducer(
+export default function rootReducer(
     state={},
     action
 ){

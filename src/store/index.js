@@ -1,14 +1,16 @@
 import { createStore, applyMiddleware} from "redux";
-import appReducer from "./reducer";
+import rootReducer from "./rootReducer";
 import createSagaMiddleware from 'redux-saga'
-import { watchListAllTodos } from "./todos/sagas";
+import rootSagas from "./rootSagas";
+import { PrintAction } from './middlewares/PrintAction'
 
 const sagaMiddleware = createSagaMiddleware()
 
 const store = createStore(
-    appReducer, 
-    applyMiddleware(sagaMiddleware))
+    rootReducer, 
+    applyMiddleware(sagaMiddleware,
+         PrintAction))
 
-sagaMiddleware.run(watchListAllTodos)
+sagaMiddleware.run(rootSagas)
 
 export default store

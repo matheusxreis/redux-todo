@@ -1,5 +1,5 @@
 import { Server, Model} from 'miragejs'
-
+import { v4 } from 'uuid'
  new Server({
     models: {
         todos: Model,
@@ -22,9 +22,8 @@ import { Server, Model} from 'miragejs'
         });
 
        this.post('/', (schema, request)=>{
-       let attrs = JSON.parse(request.requestBody)
-       console.log(attrs.todo)
-           return schema.todos.create( attrs.todo);
+       let {text} = JSON.parse(request.requestBody)
+           return schema.todos.create({id: v4(), text, completed: false, color:''});
         });
     }
 })

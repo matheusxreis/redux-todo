@@ -1,6 +1,6 @@
 import { api } from '../../api/client'
-import { put, takeEvery, all } from 'redux-saga/effects'
-
+import { put, takeEvery, all, actionChannel } from 'redux-saga/effects'
+import { v4 } from 'uuid'
 
 //worker function
 export function* listAllTodos(){
@@ -15,5 +15,24 @@ export function* listAllTodos(){
 //watcher function
 export function* watchListAllTodos(){
 
-    yield takeEvery('@todos/listAll', listAllTodos)
+    
+   yield takeEvery('@todos/listAll', listAllTodos)
+}
+
+
+export function* addNewTodo({payload}){
+
+     yield api.post('/todos', 
+     {
+   
+    text: payload,
+    
+      })
+
+   yield put({payload})
+}
+
+export function* watchAddNewTodo(){
+
+    yield takeEvery("todos/todoAdded", addNewTodo)
 }
