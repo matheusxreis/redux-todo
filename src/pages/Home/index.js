@@ -10,7 +10,6 @@ import { toast } from 'react-toastify'
 
 import { MdDelete } from 'react-icons/md'
 
-import { OptionsComponent } from '../../components/OptionsComponent'
 import {
     AddNewTodo,
     ListAllTodos,
@@ -281,7 +280,105 @@ export default function Home() {
                    </ul>
                    </CenterContainer>
 
-<OptionsComponent />
+                   <CenterContainer
+                    >
+                    <div style={{display:'flex',
+                        //alignItems: "center",
+                        //alignContent:"center",
+                        justifyContent:"space-between"}}>
+
+                    <div>
+                    <span style={{display:'block', marginLeft:'auto', width:'150px'}}>
+                        <b>Ações: </b>
+
+                       <Button 
+                       onClick={()=>handleMarkAll()}
+                       style={{padding: 0, height:'30px', width:150}}> 
+                       Marcar todas </Button>
+                       <Button
+                       onClick={()=>handleDesmarkAll()}
+                       style={{padding: 0, height:'30px', width:150}}>
+                         Desmarcar todas </Button>
+
+                    </span>
+
+                    </div>
+
+                    <div>
+                    <span style={{display:'block', marginLeft:'auto', width:'150px'}}>
+                        <b>Tarefas restantes: </b>
+
+                        <p> {todos.filter(x=>!x.completed).length} 
+                        {todos.filter(x=>!x.completed).length === 1 ? ' item ' :' itens '} 
+                        sobrando. </p>
+                    </span>
+
+                    </div>
+                    <div>
+                    <span style={{display:'block', marginLeft:'auto', width:'150px'}}>
+                        <b>Filtrar pelo status: </b>
+                    </span>
+
+                    {statusList.map(x=> {
+                           
+                           return x!=='' && (
+                             
+                             <div style={{display:"flex",
+                             alignItems: "center",
+                             alignContent:"center",
+                             margin: 5,
+                             padding:10,
+                             lineHeight: `25px\${statusList.length}`,
+                             color: '#FFFFF',
+                             width:'120px',
+                             height:'25px',
+                             marginLeft:'auto'}}>
+                              <CheckItem
+                              checked={x===statusSelected}
+                              color="#212930" 
+                              text={x} 
+                              param={x}
+                              onClickProps={handleFilterByStatus}/>
+                              
+                            </div>
+                     )})}
+                    </div>
+                    <div>  
+                       <span style={{display:'block', marginLeft:'auto', width:'150px'}}>
+                        <b>Filtrar pela cor: </b>
+                       </span>
+
+                       {colorsList.map(x=> {
+                           
+                         return x!=='' && (
+                           
+                           <div style={{display:"flex",
+                           alignItems: "center",
+                           alignContent:"center",
+                           justifyContent:"space-between",
+                           margin: 5,
+                           padding:10,
+                           width:'120px',
+                           height:'25px',
+                           marginLeft:'auto'}}>
+
+                            <CheckItem
+                            color="#212930" 
+                            text={x} 
+                            param={x}
+                            onClickProps={handleFilterByColor}/>
+                            <div style={{
+                                width:20,
+                                height:20,
+                                background: x,
+                                borderRadius: 2,
+
+                            }}> </div>
+                          </div>
+                       )})}
+                    </div> 
+                   </div>
+                 </CenterContainer>
         </div>
     )
 }
