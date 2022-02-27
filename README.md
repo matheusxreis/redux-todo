@@ -4,6 +4,7 @@
 
 Esse projeto foi criado com o objetivo de treinar e entender melhor como a biblioteca do Redux funciona, principalmente com React. 
 
+![print](print.png)
 #### Tecnologias utilizadas: :pen: 
 - **React**: biblioteca UI;
 - **React-Redux**: biblioteca do Redux para projetos React;
@@ -32,7 +33,7 @@ O gerenciamento das **todos** foi todo feito utilizando o store do Redux, ao inv
 
 Para criar a store, foi utilizado o conceito de reducers e actions divididos por módulos, onde há um reducers principal que agrupa todos os outros e é jogado diretamente no createStore. 
 
-O Sagas foi utilizado para lidar com operações assíncronas na aplicação, como as chamadas para API, para consultar o banco, adicionar e também remover. O middleware do Saga também foi divido dentro dos módulos, possuindo um principal que agrupa todos os outros e esse qual é colocado como middleware na store.
+O Sagas foi utilizado para lidar com operações assíncronas na aplicação, como as chamadas para API, para consultar o banco etc. O middleware do Saga também foi divido dentro dos módulos, possuindo um principal que agrupa todos os outros e esse qual é colocado como middleware na store.
 
 Apesar de uma aplicação extremamente básica, ela ilustra muito bem como o Redux e o Redux-Saga podem ser utilizados em uma aplicação. **Conceitos aprendidos** na construção foram:
 
@@ -41,3 +42,5 @@ Apesar de uma aplicação extremamente básica, ela ilustra muito bem como o Red
 - Generators functions no JavaScript.
 - Como funciona o middleware Redux-Saga.
 - Estruturação de pastas por módulos no Redux.
+
+That's all folks! Never stop learning!
